@@ -42,8 +42,13 @@ We studied [x402](./x402-subscription-and-session-patterns.md), which uses HTTP 
 
 We continue to improve [Paypay](./paypay-solution.md), our crypto subscription payment solution. The key change from the previous version: we moved from approving the payee directly to approving a SubscriptionManager contract that enforces the payment policy on-chain. We also added ERC-2612 `permit` support for gasless authorization, falling back to `approve` for tokens that don't support it. We also built a demo integrating with Stripe as Yash suggested, and added a merchant dashboard for viewing payments, managing redirect URLs and webhooks.
 
-- [Merchant Dashboard demo](./demo/merchant-dashboard.mp4)
-- [Subscription Flow demo](./demo/subscription-flow.mp4)
+**Merchant Dashboard demo**
+
+https://github.com/yikkai95/paypaydoc/raw/main/demo/merchant-dashboard.mp4
+
+**Subscription Flow demo**
+
+https://github.com/yikkai95/paypaydoc/raw/main/demo/subscription-flow.mp4
 
 ### Next Steps
 

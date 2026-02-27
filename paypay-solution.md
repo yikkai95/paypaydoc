@@ -4,8 +4,13 @@ Paypay is our crypto subscription payment solution built on top of the research 
 
 ## Demo Videos
 
-- [Merchant Dashboard](./demo/merchant-dashboard.mp4) — merchant page for viewing dashboard, managing redirects and webhooks
-- [Subscription Flow](./demo/subscription-flow.mp4) — end-to-end subscription payment demo integrated with Stripe
+**Merchant Dashboard** — merchant page for viewing dashboard, managing redirects and webhooks
+
+https://github.com/yikkai95/paypaydoc/raw/main/demo/merchant-dashboard.mp4
+
+**Subscription Flow** — end-to-end subscription payment demo integrated with Stripe
+
+https://github.com/yikkai95/paypaydoc/raw/main/demo/subscription-flow.mp4
 
 ## What We Built
 
