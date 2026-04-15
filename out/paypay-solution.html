@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>paypay-solution</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+
+<h1 id="paypay-our-solution">Paypay — Our Solution</h1>
+<p>Paypay is our crypto subscription payment solution built on top of the research in this repo.</p>
+<h2 id="demo-videos">Demo Videos</h2>
+<p><strong>Merchant Dashboard</strong> — merchant page for viewing dashboard, managing redirects and webhooks</p>
+<p><a href="https://github.com/yikkai95/paypaydoc/raw/main/demo/merchant-dashboard.mp4">https:&#47;&#47;github.com&#47;yikkai95&#47;paypaydoc&#47;raw&#47;main&#47;demo&#47;merchant-dashboard.mp4</a></p>
+<p><strong>Subscription Flow</strong> — end-to-end subscription payment demo integrated with Stripe</p>
+<p><a href="https://github.com/yikkai95/paypaydoc/raw/main/demo/subscription-flow.mp4">https:&#47;&#47;github.com&#47;yikkai95&#47;paypaydoc&#47;raw&#47;main&#47;demo&#47;subscription-flow.mp4</a></p>
+<h2 id="network-school-follow-up">Network School Follow-up</h2>
+<p>We also documented the first <code>USDC permit() + Gnosis Safe multisig</code> Loom requested for the Network School follow-up.</p>
+<ul>
+<li>Short Loom (27s): <a href="https://www.loom.com/share/1c6a68f0302b4c329288c93558b225b9">https:&#47;&#47;www.loom.com&#47;share&#47;1c6a68f0302b4c329288c93558b225b9</a></li>
+<li>Long Loom (1m 19s): <a href="https://www.loom.com/share/b0f7e850308f42cdabe43b3b3ae35801">https:&#47;&#47;www.loom.com&#47;share&#47;b0f7e850308f42cdabe43b3b3ae35801</a></li>
+<li>Meeting note: <a href="./meetings/2026-03-12.md">meetings&#47;2026-03-12.md</a></li>
+</ul>
+<h2 id="what-we-built">What We Built</h2>
+<h3 id="merchant-dashboard">Merchant Dashboard</h3>
+<p>A merchant-facing page where business owners can:</p>
+<ul>
+<li>View subscription payment dashboard</li>
+<li>Manage redirect URLs (post-payment redirects)</li>
+<li>Configure webhooks for payment event notifications</li>
+</ul>
+<h3 id="stripe-integration">Stripe Integration</h3>
+<p>Following Yash&#8217;s suggestion, we built a demo integrating with Stripe&#8217;s checkout flow. This allows merchants to use Stripe as the frontend while our contract handles the on-chain subscription logic.</p>
+<h3 id="subscription-contract-subscriptionmanager">Subscription Contract (SubscriptionManager)</h3>
+<p>The payer grants token allowance to a SubscriptionManager contract — not the payee directly. The contract stores the payment policy (amount, frequency, timing) and enforces it on-chain. A backend service calls the contract each billing cycle to pull the payment. The contract rejects any pull that violates the policy.</p>
+<p><strong>Authorization flow:</strong>
+1. Try ERC-2612 <code>permit</code> — gasless off-chain signature (works for USDC, DAI, etc.)
+2. Fall back to ERC-20 <code>approve</code> — on-chain transaction if permit is not supported</p>
+<h2 id="what-changed-from-the-previous-version">What Changed From the Previous Version</h2>
+<p>The previous version used <strong>approve&#47;permit directly to the payee</strong> + backend <code>transferFrom</code>. The problem: the payer had to approve the full subscription amount upfront (e.g. 12 months), and the payee could drain the entire allowance at any time.</p>
+<p>We changed to <strong>approve&#47;permit to a contract</strong> + backend triggers the contract. The contract sits between payer and payee and enforces the payment schedule on-chain. The payee can only withdraw through the contract, which rejects pulls at the wrong timing or for the wrong amount.</p>
+</main>
+
+</body>
+</html>

@@ -12,6 +12,14 @@ https://github.com/yikkai95/paypaydoc/raw/main/demo/merchant-dashboard.mp4
 
 https://github.com/yikkai95/paypaydoc/raw/main/demo/subscription-flow.mp4
 
+## Network School Follow-up
+
+We also documented the first `USDC permit() + Gnosis Safe multisig` Loom requested for the Network School follow-up.
+
+- Short Loom (27s): https://www.loom.com/share/1c6a68f0302b4c329288c93558b225b9
+- Long Loom (1m 19s): https://www.loom.com/share/b0f7e850308f42cdabe43b3b3ae35801
+- Meeting note: [meetings/2026-03-12.md](./meetings/2026-03-12.md)
+
 ## What We Built
 
 ### Merchant Dashboard
